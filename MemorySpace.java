@@ -1,4 +1,26 @@
 import java.util.Stack;
+import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+
+// ... existing code ...
+
+// New static field to store subroutines
+public static Map<String, Subroutine> subroutines = new HashMap<>();
+
+// Subroutine inner class to store details of a subroutine
+public static class Subroutine {
+    public List<Token> parameters;
+    public Compound statement;
+
+    public Subroutine(List<Token> parameters, Compound statement) {
+        this.parameters = parameters;
+        this.statement = statement;
+    }
+}
+
+// ... rest of the MemorySpace class ...
+
 import java.util.ArrayList;
 
 /**
