@@ -74,6 +74,31 @@ public class Expression {
             DataValue rhs = this.expr2.evaluate();
 
             if (lhs.getType() == rhs.getType()) {
+// Evaluate the '#' string length operator
+if (this.op.toString().equals("#")) {
+    if (this.expr1.getType() == DataValue.Type.STRING_VALUE) {
+        String str = this.expr1.evaluate().toString();
+        return new IntegerValue(str.length());
+    } else {
+        throw new Exception("RUNTIME ERROR: '#' operator expects a string value");
+    }
+}
+
+// Evaluate the '@' string indexing operator
+if (this.op.toString().equals("@")) {
+    if (this.expr1.getType() == DataValue.Type.STRING_VALUE &&
+        this.expr2.getType() == DataValue.Type.INTEGER_VALUE) {
+        String str = this.expr1.evaluate().toString();
+        int index = (Integer) this.expr2.evaluate().getValue();
+        if (index < 0 || index >= str.length()) {
+            throw new Exception("RUNTIME ERROR: Index out of bounds for string indexing");
+        }
+        return new StringValue(String.valueOf(str.charAt(index)));
+    } else {
+        throw new Exception("RUNTIME ERROR: '@' operator expects a string and an integer");
+    }
+}
+
                 if (op.toString().equals("==")) {
                     return new BooleanValue(lhs.compareTo(rhs) == 0);
                 } else if (op.toString().equals("!=")) {
