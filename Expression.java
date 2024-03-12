@@ -46,7 +46,26 @@ public class Expression {
      *   @return the value represented by the expression
      */
     public DataValue evaluate() throws Exception {
-        if (this.op == null) {
+            if (this.op.toString().equals("#")) {
+                if (this.expr1 instanceof StringValue) {
+                    return new IntegerValue(((StringValue) this.expr1).getValue().length());
+                } else {
+                    throw new Exception("RUNTIME ERROR: '#' operator expects a string value");
+                }
+            }
+            if (this.op.toString().equals("@")) {
+                if (this.expr1 instanceof StringValue && this.expr2 instanceof IntegerValue) {
+                    String str = ((StringValue) this.expr1).getValue();
+                    int index = ((IntegerValue) this.expr2).getValue();
+                    if (index < 0 || index >= str.length()) {
+                        throw new Exception("RUNTIME ERROR: Index out of bounds for string indexing");
+                    }
+                    return new StringValue(String.valueOf(str.charAt(index)));
+                } else {
+                    throw new Exception("RUNTIME ERROR: '@' operator expects a string and an integer");
+                }
+            }
+
         	if (this.tok.getType() == Token.Type.IDENTIFIER) {
                 if (!Interpreter.MEMORY.isDeclared(this.tok)) {
                     throw new Exception("RUNTIME ERROR: variable " + this.tok + " is undeclared");
