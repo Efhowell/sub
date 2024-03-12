@@ -23,7 +23,8 @@ public class Interpreter {
             throw new RuntimeException("Subroutine not found: " + name);
         }
 
-        MemorySpace.Subroutine subroutine = MemorySpace.subroutines.get(name);
+            throw new RuntimeException("Incorrect number of arguments for subroutine: " + name);
+
         if (subroutine.parameters.size() != argValues.size()) {
             throw a RuntimeException("Incorrect number of arguments for subroutine: " + name);
         }
