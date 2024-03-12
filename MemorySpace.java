@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 
-// ... existing code ...
+
 
 // New static field to store subroutines
 
@@ -34,7 +34,7 @@ public static class Subroutine {
     }
 }
 
-// ... rest of the MemorySpace class ...
+
 
 import java.util.ArrayList;
 
