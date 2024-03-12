@@ -5,19 +5,18 @@ import java.util.Map;
 
 
 
-// New static field to store subroutines
-public static Map<String, Subroutine> subroutines = new HashMap<>();
+static Map<String, Subroutine> subroutines = new HashMap<>();
 
-// Subroutine inner class to store details of a subroutine
-public static class Subroutine {
-    public List<Token> parameters;
-    public Compound statement;
+static class Subroutine {
+    List<Token> parameters;
+    Compound statement;
 
-    public Subroutine(List<Token> parameters, Compound statement) {
+    Subroutine(List<Token> parameters, Compound statement) {
         this.parameters = parameters;
         this.statement = statement;
     }
 }
+
 
 
 
