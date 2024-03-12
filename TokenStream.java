@@ -71,6 +71,12 @@ public class TokenStream {
      *   @return the next token
      */
     public Token next() {
+
+        // Add 'sub' and 'call' to the list of keywords
+        this.keywords = Arrays.copyOf(this.keywords, this.keywords.length + 2);
+        this.keywords[this.keywords.length - 2] = "sub";
+        this.keywords[this.keywords.length - 1] = "call";
+
         Token safe = this.lookAhead();
         this.nextToken = null;
         this.buffer = this.buffer.substring(safe.toString().length()).strip();
