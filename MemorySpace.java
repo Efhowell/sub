@@ -6,6 +6,21 @@ import java.util.Map;
 // ... existing code ...
 
 // New static field to store subroutines
+
+    // New static field to store subroutines
+    public static Map<String, Subroutine> subroutines = new HashMap<>();
+
+    // Subroutine inner class to store details of a subroutine
+    public static class Subroutine {
+        public List<Token> parameters;
+        public Compound statement;
+
+        public Subroutine(List<Token> parameters, Compound statement) {
+            this.parameters = parameters;
+            this.statement = statement;
+        }
+    }
+
 public static Map<String, Subroutine> subroutines = new HashMap<>();
 
 // Subroutine inner class to store details of a subroutine
