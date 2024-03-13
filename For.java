@@ -1,4 +1,4 @@
-public class For extends Statement {
+public class For implements Statement {
     private String loopVariable;
     private Expression startExpression, endExpression;
     private Compound loopBody;
@@ -32,6 +32,21 @@ public class For extends Statement {
                 if (!Interpreter.MEMORY.isDeclared(loopVarToken)) {
                     Interpreter.MEMORY.declareVariable(loopVarToken);
                 }
+                // Now assign the current value of i to the loop variable
+                Interpreter.MEMORY.storeValue(loopVarToken, new IntegerValue(i));
+
+                // Execute the loop body
+                this.loopBody.execute();
+            }
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "for " + loopVariable + " from " + startExpression + " to " + endExpression + " " + loopBody;
+    }
+}
+
                 // Now assign the current value of i to the loop variable
                 Interpreter.MEMORY.storeValue(loopVarToken, new IntegerValue(i));
     
