@@ -5,7 +5,7 @@ import java.util.ArrayList;
  *   @author Dave Reed
  *   @version 12/22/23
  */
-public class Compound extends Statement {
+public class Compound implements Statement {
     private ArrayList<Statement> stmts;
 
     /**
@@ -32,6 +32,22 @@ public class Compound extends Statement {
         for (Statement stmt : this.stmts) {
             stmt.execute();
         }
+        Interpreter.MEMORY.endCurrentScope();
+    }
+
+    /**
+     * Converts the current compound statement into a String.
+     *   @return the String representation of this statement
+     */
+    public String toString() {
+        String str = "{\n";
+        for (Statement stmt : this.stmts) {
+            str += "  " + stmt + "\n";
+        }
+        return str + "}";
+    }
+}
+
         Interpreter.MEMORY.endCurrentScope();
     }
 
