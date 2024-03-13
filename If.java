@@ -3,7 +3,7 @@
  *   @author Dave Reed
  *   @version 12/22/23
  */
-public class If extends Statement {
+public class If implements Statement {
     private Expression test;
     private Compound ifBody;
 
@@ -32,6 +32,20 @@ public class If extends Statement {
             throw new Exception("RUNTIME ERROR: If statement requires Boolean test.");
         } 
         else if (((Boolean) test.getValue())) {
+            this.ifBody.execute();
+        } 
+    }
+
+    /**
+     * Converts the current if statement into a String.
+     *   @return the String representation of this statement
+     */
+    public String toString() {
+        return "if " + this.test + " " + this.ifBody + " noelse";
+        
+    }
+}
+
             this.ifBody.execute();
         } 
     }
