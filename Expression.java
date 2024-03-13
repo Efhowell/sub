@@ -74,7 +74,17 @@ public class Expression {
             } else if (this.tok.getType() == Token.Type.INTEGER_LITERAL) {
                 return new IntegerValue(Integer.parseInt(this.tok.toString()));
             } else if (this.tok.getType() == Token.Type.STRING_LITERAL) {
-                return new StringValue(this.tok.toString());
+// Inside the evaluate method
+if (this.op != null && this.op.toString().equals("#")) {
+    DataValue evaluatedExpr1 = this.expr1.evaluate();
+    if (evaluatedExpr1 instanceof StringValue) {
+        String str = ((StringValue) evaluatedExpr1).getValue();
+        return new IntegerValue(str.length());
+    } else {
+        throw new Exception("RUNTIME ERROR: '#' operator expects a string value");
+    }
+}
+
             } else if (this.tok.getType() == Token.Type.BOOLEAN_LITERAL) {
                 return new BooleanValue(Boolean.valueOf(this.tok.toString()));
             }
