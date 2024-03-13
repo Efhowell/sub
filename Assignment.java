@@ -3,7 +3,7 @@
  *   @author Dave Reed
  *   @version 12/22/23
  */
-public class Assignment extends Statement {
+public class Assignment implements Statement {
     private Token vbl;
     private Expression expr;
     
@@ -32,6 +32,17 @@ public class Assignment extends Statement {
         	Interpreter.MEMORY.declareVariable(this.vbl);           
         } 
         Interpreter.MEMORY.storeValue(this.vbl, this.expr.evaluate());
+    }
+    
+    /**
+     * Converts the current assignment statement into a String.
+     *   @return the String representation of this statement
+     */
+    public String toString() {
+        return this.vbl + " = " + this.expr;
+    }
+}
+
     }
     
     /**
