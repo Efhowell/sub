@@ -7,6 +7,8 @@ import java.io.File;
  * standard input or from a file.
  *   @author Dave Reed
  *   @version 12/24/23
+private static final List<String> keywords = Arrays.asList("print", "if", "while", "{", "sub", "call"); // Add other keywords as needed
+
  */
 public class TokenStream {
     private Scanner input;
