@@ -1,9 +1,11 @@
+import java.util.ArrayList;
+
 /**
  * Derived class that represents a while statement in the SILLY language.
  *   @author Dave Reed
  *   @version 12/22/23
  */
-public class While extends Statement {
+public class While implements Statement {
     private Expression expr;
     private Compound body;  
     
@@ -32,6 +34,15 @@ public class While extends Statement {
         }
     }
     
+    /**
+     * Converts the current while statement into a String.
+     *   @return the String representation of this statement
+     */
+    public String toString() {
+        return "while " + this.expr + " " + this.body;
+    }
+}
+
     /**
      * Converts the current while statement into a String.
      *   @return the String representation of this statement
